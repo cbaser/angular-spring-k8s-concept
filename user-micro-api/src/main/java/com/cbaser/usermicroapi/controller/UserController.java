@@ -1,6 +1,6 @@
-package com.cbaser.carmicroapi.controller;
+package com.cbaser.usermicroapi.controller;
 
-import com.cbaser.carmicroapi.model.Car;
+import com.cbaser.usermicroapi.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,28 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-public class CarController {
+public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(CarController.class);
-
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private KafkaTemplate<Object, Object> template;
 
     @Autowired
     RestTemplate restTemplate;
 
-
-    @GetMapping("/car/{name}")
-    public Car getCar(@PathVariable String name) {
-        return restTemplate.getForEntity("http://gateway/car-micro-server/" + name, Car.class).getBody();
+    @GetMapping("/user/{name}")
+    public User getUser(@PathVariable String name) {
+        return restTemplate.getForEntity("http://gateway/user-micro-server/" + name, User.class).getBody();
     }
-
-
-    @PostMapping("/car/{name}")
-    public void createCar(@PathVariable String name) {
-        logger.info(String.format("Car request recevied: %s", name));
-        this.template.send("newCar", new Car(name));
+    @PostMapping("/user/{name}")
+    public void createUser(@PathVariable String name) {
+        logger.info(String.format("User request recevied: %s", name));
+        this.template.send("newUser", new User(name));
     }
-
-
 }
