@@ -1,0 +1,69 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+    <div class="row">
+      <div class="col-sm">
+        <mat-card>
+          <mat-card-content>
+            <h2>User List</h2>
+
+            <table mat-table [dataSource]="dataSource">
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+              <ng-container matColumnDef="birthday">
+                <th mat-header-cell *matHeaderCellDef> Birthday </th>
+                <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-sm">
+        <mat-card>
+          <mat-card-content>
+            <h2>Get Users By Person Name</h2>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>First Name</mat-label>
+              <textarea #searchArea matInput placeholder="Example: James..."></textarea>
+              <button mat-button (click)="onSearchUserName(searchArea.value)" mat-flat-button color="primary">
+                Search
+              </button>
+            </mat-form-field>
+
+          </mat-card-content>
+          <mat-list  *ngFor="let item of searchedUsers">
+            <mat-list-item>
+              {{item.id}}
+              {{item.firstName}}
+              {{item.lastName}}
+              {{item.email}}
+              {{item.birthday}}
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

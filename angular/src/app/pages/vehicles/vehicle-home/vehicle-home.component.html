@@ -1,0 +1,111 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+    <div class="row">
+      <mat-card>
+        <mat-card-content>
+          <h2>Vehicle List</h2>
+          <table mat-table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef > Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="licensePlate">
+              <th mat-header-cell *matHeaderCellDef > License Plate</th>
+              <td mat-cell *matCellDef="let element"> {{element.licensePlate}} </td>
+            </ng-container>
+            <ng-container matColumnDef="vin">
+              <th mat-header-cell *matHeaderCellDef > VIN </th>
+              <td mat-cell *matCellDef="let element"> {{element.vin}} </td>
+            </ng-container>
+            <ng-container matColumnDef="color">
+              <th mat-header-cell *matHeaderCellDef > Color </th>
+              <td mat-cell *matCellDef="let element"> {{element.color}} </td>
+            </ng-container>
+            <ng-container matColumnDef="model">
+              <th mat-header-cell *matHeaderCellDef > Model </th>
+              <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+            </ng-container>
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef > Is Active? </th>
+              <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+            </ng-container>
+            <ng-container matColumnDef="validTill">
+              <th mat-header-cell *matHeaderCellDef > Valid Till </th>
+              <td mat-cell *matCellDef="let element"> {{element.validTill}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="row">
+      <mat-card>
+        <mat-card-title>Add New Vehicle</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="addVehicle(form)" autocomplete="off">
+           <div>
+             <mat-form-field appearance="fill" class="full-width-field">
+               <mat-label>License Plate</mat-label>
+               <input matInput inputmode="text" formControlName="licensePlate">
+               <mat-error>License Plate Required</mat-error>
+             </mat-form-field>
+           </div>
+            <div>
+              <mat-form-field appearance="fill" class="full-width-field">
+                <mat-label>Vehicle Identification Number</mat-label>
+                <input matInput inputmode="text" formControlName="vin">
+                <mat-error>VIN Required</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill" class="full-width-field">
+                <mat-label>Model</mat-label>
+                <input matInput inputmode="text" formControlName="model">
+                <mat-error>Model Required</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill" class="full-width-field">
+                <mat-label>Color</mat-label>
+                <input matInput inputmode="text" formControlName="color">
+                <mat-error>Color Required</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+
+              <mat-radio-group formControlName="active"  aria-label="Select an option" class="form">
+                <h3>Is Active?</h3>
+                <mat-radio-button value=true>Yes</mat-radio-button>
+                <mat-radio-button value=false>No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div>
+              <h3>Valid Until?</h3>
+              <mat-form-field appearance="fill">
+                <mat-label>Date should be in future date</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" formControlName="validTill">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+
+
+
+            <div class="row">
+              <button mat-raised-button color="secondary" type="submit">Send</button>
+            </div>
+          </form>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

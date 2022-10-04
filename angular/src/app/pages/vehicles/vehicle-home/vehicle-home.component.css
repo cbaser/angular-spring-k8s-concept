@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+.mat-list-item {
+  display: flex;
+}
+.mat-button{
+  background-color: #CC0033;
+}
+.full-width-field {
+  width: 100%;
+}
+.form{
+  padding: 20px;
+}
+.datePicker{
+  margin-top: 10px;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
