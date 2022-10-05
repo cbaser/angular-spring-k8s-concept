@@ -13,7 +13,7 @@ RUN mkdir -p target/docker-packaging && cd target/docker-packaging && jar -xf ..
 ########JRE run stage########
 FROM openjdk:11.0-jre
 WORKDIR /app
-EXPOSE 8761
+
 #copy built app layer by layer
 ARG DOCKER_PACKAGING_DIR=/app/target/docker-packaging
 COPY --from=maven_build ${DOCKER_PACKAGING_DIR}/BOOT-INF/lib /app/lib
