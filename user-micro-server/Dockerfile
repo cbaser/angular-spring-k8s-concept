@@ -23,4 +23,4 @@ COPY --from=maven_build ${DOCKER_PACKAGING_DIR}/META-INF /app/META-INF
 #run the app
 CMD java -cp .:classes:lib/* \
          -Djava.security.egd=file:/dev/./urandom \
-         com.cbaser.usermicroapi.UserMicroServerApplication
+         com.cbaser.usermicroserver.UserMicroServerApplication
