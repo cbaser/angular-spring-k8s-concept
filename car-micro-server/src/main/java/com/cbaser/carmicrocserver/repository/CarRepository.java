@@ -12,4 +12,6 @@ public interface CarRepository extends MongoRepository<Car,String> {
     @Query("{name: ?0}")
     Optional<Car> getCarByName(String id);
 
+    public long count();
+
 }

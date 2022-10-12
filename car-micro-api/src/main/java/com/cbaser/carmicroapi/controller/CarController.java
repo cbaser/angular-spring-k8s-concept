@@ -32,7 +32,7 @@ public class CarController {
     @PostMapping("/car/{name}")
     public void createCar(@PathVariable String name) {
         logger.info(String.format("Car request recevied: %s", name));
-        this.template.send("newCar", new Car(name));
+        this.template.send("carRequest", new Car(name));
     }
 
 
