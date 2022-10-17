@@ -6,19 +6,28 @@ spring:
       ribbon:
         enabled: false
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: user-api
-          uri: lb://USER-API
+          uri: lb://user-micro-api
           predicates:
             - Path=/user/**
         - id: car-api
-          uri: lb://CAR-API
+          uri: lb://car-micro-api
           predicates:
             - Path=/car/**
 eureka:
+  instance:
+    hostname: localhost
   client:
     serviceUrl:
-      defaultZone: http://eureka:8761/eureka
+      defaultZone: http://localhost:8761/eureka
 
 server:
   port: 8080
+management:
+  endpoint:
+    gateway:
+      enabled: true

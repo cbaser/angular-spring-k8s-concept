@@ -17,8 +17,8 @@ public class User {
 
     private LocalDate birthday;
 
-    public User(String firstName) {
-        this.firstName = firstName;
+    public User() {
+
     }
 
 

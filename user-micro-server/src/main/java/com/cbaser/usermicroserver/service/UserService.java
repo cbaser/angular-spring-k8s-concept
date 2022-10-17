@@ -33,4 +33,8 @@ public class UserService {
         Assert.notNull(name,"Name must be not null");
         return userRepository.getUserByFirstName(name);
     }
+    public Optional<User> findByEmail(String email) {
+        Assert.hasLength(email, "Email must not be empty");
+        return userRepository.findByEmail(email);
+    }
 }
