@@ -26,17 +26,17 @@ public class UserController {
         logger.info("UserService - GetUsers");
         return userService.findAll();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Optional<User> getUserById(@PathVariable String id){
         logger.info(String.format("UserService - GetUser By Id:"+  id));
         return userService.findById(id);
     }
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public Optional<User> getUserByName(@PathVariable String name){
         logger.info(String.format("UserService - GetUser By Name:"+  name));
         return userService.findByName(name);
     }
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public Optional<User> getUserByEmail(@PathVariable String email){
         logger.info(String.format("UserService - GetUser By Name:"+  email));
         return userService.findByEmail(email);

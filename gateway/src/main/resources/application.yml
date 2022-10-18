@@ -6,6 +6,12 @@ spring:
       ribbon:
         enabled: false
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - "*"
       discovery:
         locator:
           enabled: true
@@ -17,7 +23,7 @@ spring:
         - id: car-api
           uri: lb://car-micro-api
           predicates:
-            - Path=/car/**
+            - Path=/vehicle/**
 eureka:
   instance:
     hostname: localhost

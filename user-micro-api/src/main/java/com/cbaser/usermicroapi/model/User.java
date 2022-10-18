@@ -1,12 +1,11 @@
 package com.cbaser.usermicroapi.model;
 
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-@Data
-public class User implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class User {
 
     private String id;
     private String firstName;
@@ -17,8 +16,8 @@ public class User implements Serializable {
 
     private LocalDate birthday;
 
-    public User(String firstName) {
-        this.firstName = firstName;
+    public User() {
+
     }
 
     public void setId(String id) {

@@ -5,11 +5,11 @@ import {Config} from "../../config/config";
 export class UserRepository {
 
     async getUserByName(name:string) {
-      const resp = await httpClient.get(Config.host+Config.port+Config.root+Config.version+Config.user+Config.name+"/?name="+name)
+      const resp = await httpClient.get(Config.host+Config.port+Config.user+"/"+name)
       return resp.data;
     }
     async getUsers() {
-        const resp = await httpClient.get(Config.host+Config.port+Config.root+Config.version+Config.user)
-        return resp.data;
+    const resp = await httpClient.get(Config.host+Config.port+Config.user)
+    return resp.data;
     }
 }

@@ -4,6 +4,7 @@ import com.cbaser.usermicroserver.model.User;
 import com.cbaser.usermicroserver.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -16,12 +17,13 @@ import java.time.LocalDate;
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 @RequiredArgsConstructor
 public class TestData {
-
+    @Autowired
     private final UserService userService;
 
 
     @PostConstruct
     public void insertTestData() {
+        userService.deleteAll();
         insertTestUsers();
     }
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class UserController {
@@ -28,9 +29,9 @@ public class UserController {
     public User getUser(@PathVariable String name) {
         logger.info("GetUser");
 
-        return restTemplate.getForEntity("http://localhost:8081/" + name, User.class).getBody();
+        return restTemplate.getForEntity("http://localhost:8081/name/" + name, User.class).getBody();
     }
-    @RequestMapping(value = "/user/",method = RequestMethod.GET)
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
     public List<User> getUsers(){
         logger.info("Get Users");
         ResponseEntity<List<User>> responseEntity =

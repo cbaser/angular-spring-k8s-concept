@@ -37,4 +37,7 @@ public class UserService {
         Assert.hasLength(email, "Email must not be empty");
         return userRepository.findByEmail(email);
     }
+    public void deleteAll(){
+        userRepository.deleteAll();
+    }
 }
