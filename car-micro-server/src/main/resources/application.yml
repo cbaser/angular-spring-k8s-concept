@@ -1,5 +1,12 @@
 spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   application:
     name: car-micro-server
 server:
-  port: ${PORT:0}
+  port: 8082

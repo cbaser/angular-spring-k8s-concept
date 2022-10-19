@@ -4,14 +4,11 @@ spring:
   cloud:
     discovery:
       enabled: true
-    stream:
-      bindings:
-        output:
-          destination: queue.text
-      kafka:
-        binder:
-          brokers: 127.0.0.1
-          defaultBrokerPort: 9092
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 server:
   port: ${PORT:0}
 eureka:
