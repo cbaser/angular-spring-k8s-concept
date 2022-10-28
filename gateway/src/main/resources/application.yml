@@ -2,9 +2,6 @@ spring:
   application:
     name: gateway
   cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
     gateway:
       globalcors:
         cors-configurations:
@@ -12,32 +9,22 @@ spring:
             allowedOrigins: "*"
             allowedMethods:
               - "*"
+            allowedHeaders:
+              - "*"
       discovery:
         locator:
           enabled: true
-      routes:
-        - id: user-api
-          uri: lb://user-micro-api
-          predicates:
-            - Path=/user/**
-        - id: car-api
-          uri: lb://car-micro-api
-          predicates:
-            - Path=/vehicle/**
-        - id: auth
-          uri: lb://auth-service
-          predicates:
-            - Path=/auth/**
 eureka:
   instance:
     hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
-
+jwt:
+  secret: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
 server:
   port: 8080
-management:
-  endpoint:
-    gateway:
-      enabled: true
+#management:
+#  endpoint:
+#    gateway:
+#      enabled: true

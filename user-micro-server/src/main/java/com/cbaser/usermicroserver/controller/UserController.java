@@ -3,7 +3,6 @@ package com.cbaser.usermicroserver.controller;
 import com.cbaser.usermicroserver.model.User;
 import com.cbaser.usermicroserver.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -45,11 +44,9 @@ public class UserController {
             value = "/",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<User> addUser(@RequestBody String userString){
-        User user = new User();
-        user.setFirstName(userString);
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        logger.info(String.format("UserMicroService - Create User:"+  user));
         User persistedUser = userService.saveUser(user);
-
         return ResponseEntity
                 .created(URI
                         .create(String.format("/Users/%s", persistedUser.getBirthday())))

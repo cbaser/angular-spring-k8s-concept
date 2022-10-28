@@ -31,6 +31,9 @@ public class CarService {
         Assert.notNull(name,"Name must be not null");
         return carRepository.getCarByName(name);
     }
+    public void deleteAll(){
+        carRepository.deleteAll();
+    }
 
 
 

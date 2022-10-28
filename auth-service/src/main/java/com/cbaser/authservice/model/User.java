@@ -15,6 +15,8 @@ public class User {
 
     private LocalDate birthday;
 
+    private String password;
+
     public User() {
 
     }
@@ -60,6 +62,14 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -67,6 +77,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", birthday=" + birthday +
+                ", password=" + password +
                 '}';
     }
 }

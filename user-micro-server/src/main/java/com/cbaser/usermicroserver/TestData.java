@@ -34,7 +34,7 @@ public class TestData {
             testUser1.setEmail("test@user.com");
             testUser1.setFirstName("Max");
             testUser1.setLastName("Gentleman");
-            testUser1.setBirthday(LocalDate.parse("1990-12-12"));
+            testUser1.setBirthday(LocalDate.parse("1980-06-12"));
 
             userService.saveUser(testUser1);
         }
@@ -44,7 +44,7 @@ public class TestData {
             testUser2.setEmail("test2@user.com");
             testUser2.setFirstName("James");
             testUser2.setLastName("Bond");
-            testUser2.setBirthday(LocalDate.parse("1992-12-12"));
+            testUser2.setBirthday(LocalDate.parse("1992-01-12"));
 
             userService.saveUser(testUser2);
         }
@@ -53,7 +53,7 @@ public class TestData {
             testUser3.setEmail("test3@user.com");
             testUser3.setFirstName("Alice");
             testUser3.setLastName("Wonder-woman");
-            testUser3.setBirthday(LocalDate.parse("1952-12-12"));
+            testUser3.setBirthday(LocalDate.parse("1952-06-05"));
 
             userService.saveUser(testUser3);
         }

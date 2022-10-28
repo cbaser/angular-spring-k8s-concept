@@ -5,11 +5,11 @@ import {Config} from "../../config/config";
 export class UserRepository {
 
     async getUserByName(name:string) {
-      const resp = await httpClient.get(Config.host+Config.port+Config.user+"/"+name)
+      const resp = await httpClient.get(Config.host+Config.port+Config.user+"/"+name, {headers: {"Authorization" : "Bearer " + localStorage.getItem("accessToken")}})
       return resp.data;
     }
     async getUsers() {
-    const resp = await httpClient.get(Config.host+Config.port+Config.user)
+    const resp = await httpClient.get(Config.host+Config.port+Config.user,{headers: {"Authorization" : "Bearer " + localStorage.getItem("accessToken")}})
     return resp.data;
     }
 }

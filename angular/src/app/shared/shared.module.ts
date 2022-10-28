@@ -10,6 +10,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {NgIf} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatListModule,
     MatButtonModule,
     MatTooltipModule,
+    NgIf,
   ],
   declarations: [
     LayoutComponent

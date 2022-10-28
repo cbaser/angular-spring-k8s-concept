@@ -27,12 +27,13 @@ export class VehicleHomeComponent implements OnInit {
   displayedColumns: string[] = ['id', 'licensePlate', 'vin', 'model', 'active', 'color', 'validTill'];
   dataSource = new MatTableDataSource<Vehicle>();
   form!: FormGroup;
-  minDate = new Date();
+  minDate: any;
   constructor(private logger: NGXLogger,
               private notificationService: NotificationService,
               private titleService: Title,
               private vehicleRepo: VehicleRepository,
               private formBuilder: FormBuilder) {
+    this.minDate = new Date();
   }
 
   addVehicle(form:FormGroup) {

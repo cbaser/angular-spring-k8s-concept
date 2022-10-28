@@ -3,7 +3,7 @@
   <!-- Top navbar -->
   <mat-toolbar class="navbar" color="primary">
 
-    <button mat-icon-button (click)="snav.toggle()">
+    <button *ngIf="currentUser"  mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -19,7 +19,7 @@
 
   <mat-sidenav-container class="navbar-sidenav-container">
     <!-- Side nav -->
-    <mat-sidenav #snav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav *ngIf="currentUser ; let sidenav" [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenav">
 
       <mat-nav-list>
@@ -39,7 +39,12 @@
           <p mat-line> Vehicles </p>
         </a>
         <mat-divider></mat-divider>
-
+        <a mat-list-item (click)="logout()">
+          <mat-icon mat-list-icon>
+            logout
+          </mat-icon>
+          <p mat-line> Logout </p>
+        </a>
       </mat-nav-list>
 
     </mat-sidenav>
