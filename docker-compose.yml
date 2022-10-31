@@ -6,11 +6,9 @@ services:
     restart: always
     container_name: angular
     ports:
-      - "8420:8420"
+      - "80:80"
     depends_on:
        gateway:
-         condition: service_started
-       mongo:
          condition: service_started
   mongo:
     image: mongo
@@ -22,7 +20,7 @@ services:
       - $HOME/data/springboot-mongo-bkp:/data/bkp
     restart: on-failure
     healthcheck:
-        test: ["CMD","mongo", "--eval", "db.adminCommand('ping')"]
+        test: echo 'db.runCommand({serverStatus:1}).ok'  grep 1
         interval: 10s
         timeout: 10s
         retries: 5
@@ -39,7 +37,8 @@ services:
     ports:
       - "9092:9092"
     healthcheck:
-      test: ["CMD", "nc", "-vz", "kafka", "9092"]
+      test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --describe"]
+      start_period: 15s
       interval: 30s
       timeout: 10s
       retries: 20
@@ -69,44 +68,45 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-       eureka:
-         condition: service_healthy
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8080" ]
-      interval: 30s
-      timeout: 10s
-      retries: 20
+      car-micro-api:
+         condition: service_started
+      user-micro-api:
+        condition: service_started
+  auth-service:
+    build: auth-service
+    container_name: auth-service
+    restart: on-failure
+    depends_on:
+      eureka:
+        condition: service_healthy
   car-micro-api:
     build: car-micro-api
     restart: always
     container_name: car_api
     depends_on:
        eureka:
-         condition: service_started
-       gateway:
-         condition: service_started
+         condition: service_healthy
   car-micro-server:
     build: car-micro-server
     restart: on-failure
     container_name: car_server
     depends_on:
-       car-micro-api:
-         condition: service_started
-
+       mongo:
+         condition: service_healthy
+       kafka:
+         condition: service_healthy
   user-micro-api:
     build: user-micro-api
     restart: always
     container_name: user_api
     depends_on:
        eureka:
-         condition: service_started
-       gateway:
-         condition: service_started
+         condition: service_healthy
   user-micro-server:
     build: user-micro-server
     restart: on-failure
     container_name: user_server
     depends_on:
-       user-micro-api:
-         condition: service_started
+       mongo:
+         condition: service_healthy
 

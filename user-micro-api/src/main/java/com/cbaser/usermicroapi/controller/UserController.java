@@ -32,8 +32,9 @@ public class UserController {
         logger.info("Get User By Email");
 
         ResponseEntity<User> responseEntity =
-                restTemplate.exchange("http://localhost:8081/email/"+email,
-                        HttpMethod.GET, null, new ParameterizedTypeReference<User>(){});
+                restTemplate.exchange("http://user-micro-server:8081/email/"+email,
+                        HttpMethod.GET, null, new ParameterizedTypeReference<>() {
+                        });
         return responseEntity.getBody();
     }
 
@@ -42,14 +43,14 @@ public class UserController {
     public List<User> getUsers(){
         logger.info("Get Users");
         ResponseEntity<List<User>> responseEntity =
-                restTemplate.exchange("http://localhost:8081/",
+                restTemplate.exchange("http://user-micro-server:8081/",
                         HttpMethod.GET, null, createParameterizedTypeReference());
        return responseEntity.getBody();
     }
-    @GetMapping(value="/user")
+    @PostMapping(value="/user")
     public String createUser(@RequestBody User user){
         logger.info("Create User" + user.toString());
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:8081/",user,String.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://user-micro-server:8081/",user,String.class);
         return responseEntity.getBody();
     }
 

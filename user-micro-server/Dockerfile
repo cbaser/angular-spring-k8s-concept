@@ -5,7 +5,7 @@ COPY pom.xml .
 COPY src ./src
 
 # build the app and download dependencies only when these are new (thanks to the cache)
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # split the built app into multiple layers to improve layer rebuild
 RUN mkdir -p target/docker-packaging && cd target/docker-packaging && jar -xf ../user-micro-server*.jar

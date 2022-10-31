@@ -10,14 +10,15 @@ spring:
           destination: queue.text
       kafka:
         binder:
-          brokers: 127.0.0.1
+          brokers: kafka
           defaultBrokerPort: 9092
 server:
   port: ${PORT:0}
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    hostname: localhost
+#    hostname: localhost
+    preferIpAddress: true

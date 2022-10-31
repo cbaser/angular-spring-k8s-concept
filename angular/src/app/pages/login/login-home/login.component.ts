@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       localStorage.setItem("currentUser",JSON.stringify(data.user));
       localStorage.setItem("accessToken",data.accessToken);
       localStorage.setItem("refreshToken",data.refreshToken);
-      this.router.navigate(["/users"]).then();
+      this.router.navigateByUrl('users').then();
     })
   }
 

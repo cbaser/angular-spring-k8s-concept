@@ -30,12 +30,12 @@ public class CarController {
 
     @GetMapping("/vehicle/{name}")
     public Car getVehicle(@PathVariable String name) {
-        return apiConfig.getForEntity("http://localhost:8082/car/name/" + name, Car.class).getBody();
+        return apiConfig.getForEntity("http://car-micro-server:8082/car/name/" + name, Car.class).getBody();
     }
     @GetMapping("/vehicle")
     public List<Car> getVehicles(){
         ResponseEntity<List<Car>> responseEntity =
-                apiConfig.exchange("http://localhost:8082/",
+                apiConfig.exchange("http://car-micro-server:8082/",
                         HttpMethod.GET, null, createParameterizedTypeReference());
         return responseEntity.getBody();
     }
